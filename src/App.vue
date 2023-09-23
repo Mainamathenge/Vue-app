@@ -1,15 +1,21 @@
 <template>
-  <v-app>
+  <VApp>
+    <sideBar></sideBar>
     <v-main>
-      <router-view />
+      <imageGallery />
     </v-main>
-  </v-app>
+  </VApp>
 </template>
 
 <script>
-export default {
-  name: "App",
+import sideBar from "./components/sideBar.vue";
+import imageGallery from "./components/imageGallery.vue";
 
+export default {
+  components: {
+    imageGallery,
+    sideBar,
+  },
   data: () => ({
     //
   }),
