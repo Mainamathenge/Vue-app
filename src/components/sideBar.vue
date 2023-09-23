@@ -1,29 +1,34 @@
 <template>
-  <VNavigationDrawer expand-on-hover rail>
-    <v-list>
-      <v-list-item
-        prepend-avatar="https://randomuser.me/api/portraits/women/85.jpg"
-        title="User1"
-        subtitle="user@cmu.com"
-      ></v-list-item>
-      <v-divider></v-divider>
-      <v-list density="compact" nav>
-        <v-list-item
-          prepend-icon="mdi-image"
-          title="My gallary"
-          value="myfiles"
-        ></v-list-item>
-        <v-list-item
-          prepend-icon="mdi-account-multiple"
-          title="Shared with me"
-          value="shared"
-        ></v-list-item>
-        <v-list-item
-          prepend-icon="mdi-star"
-          title="Starred"
-          value="starred"
-        ></v-list-item>
-      </v-list>
-    </v-list>
-  </VNavigationDrawer>
+  <v-card>
+    <v-layout>
+      <!-- <v-system-bar color="deep-purple darken-3"></v-system-bar> -->
+
+      <v-app-bar color="primary" prominent>
+        <v-app-bar-nav-icon
+          variant="text"
+          @click.stop="drawer = !drawer"
+        ></v-app-bar-nav-icon>
+        <v-toolbar-title>My Images</v-toolbar-title>
+
+        <v-spacer></v-spacer>
+
+        <v-btn variant="text" icon="mdi-magnify"></v-btn>
+
+        <v-btn variant="text" icon="mdi-filter"></v-btn>
+
+        <v-btn variant="text" icon="mdi-dots-vertical"></v-btn>
+      </v-app-bar>
+
+      <v-navigation-drawer v-model="drawer" location="bottom" temporary>
+        <v-list :items="items"></v-list>
+      </v-navigation-drawer>
+
+      <v-main style="height: 50px">
+        <v-card-text>
+          The navigation drawer will appear from the bottom on smaller size
+          screens.
+        </v-card-text>
+      </v-main>
+    </v-layout>
+  </v-card>
 </template>
