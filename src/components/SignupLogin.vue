@@ -5,7 +5,11 @@
     image="https://cdn.vuetifyjs.com/images/backgrounds/bg-2.jpg"
     permanent
   >
-    <v-card class="custom-card"> Welcome To CMU DATA collection </v-card>
+    <v-card class="custom-card">
+      <div class="d-flex align-center justify-center vertical-center">
+        Welcome To CMU DATA collection
+      </div>
+    </v-card>
     <v-form
       ref="form"
       image="https://cdn.vuetifyjs.com/images/backgrounds/bg-2.jpg"
@@ -98,5 +102,20 @@ export default {
   background-size: cover;
   backdrop-filter: blur(100px);
   height: 150px;
+}
+.align-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.vertical-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 </style>
