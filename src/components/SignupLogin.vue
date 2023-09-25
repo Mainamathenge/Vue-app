@@ -86,7 +86,6 @@ export default {
 
 <style>
 .scrollable-container {
-  max-height: 650px;
   overflow-y: auto;
 }
 .custom-card {
