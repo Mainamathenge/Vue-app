@@ -6,6 +6,7 @@
       image="https://cdn.vuetifyjs.com/images/backgrounds/bg-2.jpg"
       permanent
     >
+      <div style="margin-bottom: 20px"></div>
       <v-card class="custom-card">
         <div class="d-flex align-center justify-center vertical-center">
           Welcome To CMU DATA collection
@@ -86,6 +87,7 @@ export default {
 
 <style>
 .scrollable-container {
+  height: 100%;
   overflow-y: auto;
 }
 .custom-card {
