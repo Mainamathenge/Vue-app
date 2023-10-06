@@ -16,6 +16,7 @@
         ref="form"
         image="https://cdn.vuetifyjs.com/images/backgrounds/bg-2.jpg"
         permanent
+        @submit.prevent="signUp"
       >
         <v-text-field
           v-model="FullName"
@@ -26,50 +27,54 @@
         <v-spacer></v-spacer>
         <v-text-field
           v-model="PhoneNumber"
-          :counter="10"
-          :rules="nameRules"
+          :counter="13"
           label="phone"
           required
         ></v-text-field>
         <v-spacer></v-spacer>
         <v-text-field
           v-model="email"
-          :rules="nameRules"
+          :rules="emailRules"
           label="email"
           required
         ></v-text-field>
         <v-spacer></v-spacer>
         <v-text-field
-          v-model="PhoneName"
-          :rules="nameRules"
+          v-model="phoneName"
           label="PhoneName&Model"
           required
         ></v-text-field>
         <v-spacer></v-spacer>
         <v-text-field
-          v-model="YearofManufacture"
+          v-model="ManufDate"
           :rules="nameRules"
           label="Year of Manufacture"
           required
         ></v-text-field>
         <v-spacer></v-spacer>
         <v-text-field
-          v-model="cameraSpecs"
-          :rules="nameRules"
-          label="CameraMegapicells"
+          v-model="cameraMpx"
+          label="CameraMegapixells"
           required
         ></v-text-field>
-
-        <v-checkbox
-          v-model="checkbox"
-          :rules="[(v) => !!v || 'You must agree to continue!']"
-          label="Do you agree to the terms and conditions?"
+        <v-text-field
+          v-model="password"
+          :rules="passwordRules"
+          label="password"
           required
-        ></v-checkbox>
+          append-icon="mdi-eye-off"
+        ></v-text-field>
+        <v-text-field
+          v-model="passwordConfirm"
+          @input="validatePasswords"
+          label="Confirm your password"
+          required
+          append-icon="mdi-eye-off"
+        ></v-text-field>
 
         <div class="d-flex flex-column">
-          <v-btn color="success" class="mt-4" block @click="validate">
-            SUBMIT
+          <v-btn color="success" class="mt-4" block type="submit">
+            signUp
           </v-btn>
           <div style="margin-bottom: 20px"></div>
         </div>
@@ -82,6 +87,49 @@
 <script>
 export default {
   name: "HelloWorld",
+  data() {
+    return {
+      email: "",
+      password: "",
+      passwordConfirm: "",
+      phoneName: "",
+      PhoneNumber: "",
+      FullName: "",
+      ManufDate: "",
+      cameraMpx: "",
+      passwordsMatch: false,
+      emailRules: [
+        (value) => !!value || "Email is required.",
+        (value) => {
+          const pattern =
+            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+          return pattern.test(value) || "Provide a valid email!";
+        },
+        (value) =>
+          value.indexOf(".") <= value.length - 3 ||
+          "Email should contain a valid domain extension.",
+      ],
+      passwordRules: [
+        (value) => !!value || "Password is required.",
+        (value) => value.length >= 8 || "Password must contain 8 character",
+      ],
+      nameRules: [(value) => !!value || "Please enter a valid name."],
+      progress: false,
+    };
+  },
+  methods: {
+    async signUp() {
+      this.progress = true;
+      await this.$store.dispatch("register", {
+        email: this.email,
+        password: this.password,
+      });
+    },
+
+    validatePasswords() {
+      this.passwordsMatch = this.password === this.passwordConfirm;
+    },
+  },
 };
 </script>
 
