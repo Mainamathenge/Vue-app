@@ -82,6 +82,7 @@
       </v-form>
     </v-sheet>
   </div>
+  <div class="align-center"><v-btn variant="tonal" @click="gotoCamera" class="align-center"> Button </v-btn></div>
 </template>
 
 <script>
@@ -138,6 +139,9 @@ export default {
     validatePasswords() {
       this.passwordsMatch = this.password === this.passwordConfirm;
     },
+    gotoCamera() {
+      this.$router.push({name:"camera"})
+    }
   },
 };
 </script>

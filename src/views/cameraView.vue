@@ -1,14 +1,38 @@
 <template>
-    <Camera :resolution="{ width: 375, height: 812 }" autoplay>
-        <button>I'm on top of the video</button>
-    </Camera>
+  <video :srcObject="stream" width="300" height="200" autoplay></video>
+  <div>
+    <button v-if="stream" @click="stop">Stop</button>
+    <button v-else @click="play">Play</button>
+  </div>
 </template>
-<script>
-import Camera from "simple-vue-camera"
 
-export default {
-  components:{
-    Camera
-  }
+<script setup>
+import { ref, onMounted, onBeforeUnmount } from 'vue'
+const stream = ref(null)
+const constraints = {
+  audio: false,
+  video: {
+    width: { min: 1024, ideal: 1280, max: 1920 },
+    height: { min: 576, ideal: 720, max: 1080 },
+    facingMode: 'environment',
+  },
 }
+
+const stop = () => {
+  stream.value.getTracks().forEach(track => {
+    console.log('stopping', track)
+    track.stop()
+  })
+  stream.value = null
+}
+
+const play = async () => {
+  const frontCamStream = await navigator.mediaDevices.getUserMedia(constraints)
+  console.log('streaming', frontCamStream)
+  stream.value = frontCamStream
+}
+
+onMounted(() => play())
+onBeforeUnmount(() => stop())
 </script>
+
