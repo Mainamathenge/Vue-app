@@ -1,5 +1,14 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
-  </div>
+    <Camera :resolution="{ width: 375, height: 812 }" autoplay>
+        <button>I'm on top of the video</button>
+    </Camera>
 </template>
+<script>
+import Camera from "simple-vue-camera"
+
+export default {
+  components:{
+    Camera
+  }
+}
+</script>

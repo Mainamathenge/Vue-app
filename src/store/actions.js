@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = "https://server.dev.ziara.africa";
+const baseURL = "http://localhost:4000";
 
 export default {
   async register({ state, commit }, credentials) {
@@ -13,6 +13,7 @@ export default {
         `${baseURL}/api/v1/users/signup`,
         credentials
       );
+      console.log(response)
       commit("SET_USER_DATA", response.data);
       commit("HIDE_PROGRESSBAR");
       commit("SHOW_SNACKBAR", {
@@ -21,6 +22,7 @@ export default {
       });
     } catch (error) {
       commit("HIDE_PROGRESSBAR");
+      console.log("good mornig",error.response);
       commit("SHOW_SNACKBAR", {
         text: error.response.data.message,
         color: "error",

@@ -3,7 +3,6 @@
   <v-snackbar
     v-model="$store.state.snackbar.show"
     :color="$store.state.snackbar.color"
-    :right="$vuetify.breakpoint.lgAndUp"
   >
     {{ $store.state.snackbar.text }}
     <template v-slot:action="{ attrs }">

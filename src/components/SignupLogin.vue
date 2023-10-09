@@ -122,8 +122,17 @@ export default {
       this.progress = true;
       await this.$store.dispatch("register", {
         email: this.email,
+        FullName: this.FullName,
+        manufDate: this.ManufDate,
+        phoneName: this.phoneName,
+        cameraMpx: this.cameraMpx,
+        PhoneNumber: this.PhoneNumber,
         password: this.password,
+        passwordConfirm: this.passwordConfirm,
       });
+      if (this.$store.state.user) {
+        this.$router.push({ name: "gallery" });
+      }
     },
 
     validatePasswords() {

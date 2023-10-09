@@ -10,7 +10,7 @@ const routes = [
     component: signUp,
   },
   {
-    path: "/about",
+    path: "/camera",
     name: "camera",
     component: cameraApp,
   },

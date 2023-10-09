@@ -1,15 +1,15 @@
 <template>
   <div id="app">
     <v-app>
-      <!-- <div>
+      <div>
         <div class="progress-container">
           <progress-linear />
         </div>
-        
+
         <v-container>
           <snack-bar />
         </v-container>
-      </div> -->
+      </div>
       <router-view />
     </v-app>
   </div>
@@ -17,14 +17,14 @@
 
 <script>
 // import SignupLogin from "./components/SignupLogin.vue";
-// import ProgressLinear from "./components/shared/ProgressLinear.vue";
-// import snackBar from "./components/shared/snackBar.vue";
+import ProgressLinear from "./components/shared/ProgressLinear.vue";
+import snackBar from "./components/shared/snackBar.vue";
 
 export default {
   name: "App",
   components: {
-    // ProgressLinear,
-    // snackBar,
+    ProgressLinear,
+    snackBar,
     // SignupLogin,
   },
   data: () => ({}),
