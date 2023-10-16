@@ -37,8 +37,8 @@ onBeforeUnmount(() => stop());
 </script>
 
 <style scoped>
-.camera {
+/* .camera {
   height: 80%;
   width: 70%;
-}
+} */
 </style>
