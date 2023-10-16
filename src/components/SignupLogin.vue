@@ -71,7 +71,6 @@
           required
           append-icon="mdi-eye-off"
         ></v-text-field>
-
         <div class="d-flex flex-column">
           <v-btn color="success" class="mt-4" block type="submit">
             signUp
