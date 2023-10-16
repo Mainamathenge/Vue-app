@@ -1,19 +1,24 @@
 <template>
-  <video :srcObject="stream" class="camera" autoplay></video>
   <div>
-    <button v-if="stream" @click="stop">Stop</button>
-    <button v-else @click="play">Play</button>
+    <sideBar></sideBar>
+    <video :srcObject="stream" class="camera" autoplay></video>
+    <div>
+      <button v-if="stream" @click="stop">Stop</button>
+      <button v-else @click="play">Play</button>
+    </div>
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from "vue";
+import sideBar from "../components/sideBar.vue";
+
 const stream = ref(null);
 const constraints = {
   audio: false,
   video: {
     width: { min: 1024, ideal: 1000, max: 1920 },
-    height: { min: 576, ideal: 1000, max: 1080 },
+    height: { min: 700, ideal: 1000, max: 1080 },
     facingMode: "environment",
   },
 };
