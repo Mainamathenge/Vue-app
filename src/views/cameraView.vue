@@ -1,8 +1,7 @@
 <template>
   <div>
-    <sideBar></sideBar>
-    <div class="camera"><video :srcObject="stream" autoplay></video></div>
-
+    <!-- <sideBar></sideBar> -->
+    <div class="camera"><video :srcObject="stream"  autoplay></video></div>
     <div>
       <button v-if="stream" @click="stop">Stop</button>
       <button v-else @click="play">Play</button>
@@ -12,30 +11,19 @@
 
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from "vue";
-import sideBar from "../components/sideBar.vue";
-const widthPercentage = 80;
-const heightPercentage = 70;
-
-// Calculate the actual pixel values based on the screen size
-const screenWidth = window.innerWidth;
-const screenHeight = window.innerHeight;
-
+// import sideBar from "../components/sideBar.vue";
 
 
 const stream = ref(null);
 const constraints = {
   audio: false,
   video: {
-  width: { ideal: (screenWidth * widthPercentage) / 100 },
-  height: { ideal: (screenHeight * heightPercentage) / 100 },
+    width: { min: 420, ideal: 500, max: 1920 },
+    height: { min: 500, ideal: 500, max: 1080 },
     facingMode: "environment",
   },
 };
-// const constraints = {
-  // width: { ideal: (screenWidth * widthPercentage) / 100 },
-  // height: { ideal: (screenHeight * heightPercentage) / 100 },
-//   facingMode: "environment",
-// };
+
 
 const stop = () => {
   stream.value.getTracks().forEach((track) => {
@@ -60,8 +48,8 @@ onBeforeUnmount(() => stop());
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 80%;
-  width: 70%;
+  height: 100%;
+  width: 100%;
   margin: 5%;
 }
 </style>
